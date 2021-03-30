@@ -21,7 +21,7 @@ interface Styles {
     input: TextStyle
 }
 
-const stl = StyleSheet.create<Styles>({
+export const stl = StyleSheet.create<Styles>({
     mainContainer: {
         flex: 1,
         justifyContent: "center",
