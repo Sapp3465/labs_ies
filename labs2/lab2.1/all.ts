@@ -17,7 +17,7 @@ const graphic_result = convert(result)
 console.log('-------------dots--------------')
 console.log(graphic_dots)
 console.log('-------------result--------------')
-console.log(graphic_result)
+console.log(graphic_result) 
 
 //-------------dots--------------
 //x;y
