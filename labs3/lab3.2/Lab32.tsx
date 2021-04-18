@@ -1,3 +1,5 @@
+//3.2 дослідіть вплив зміни швидкості навчання для однієї задачі по відношенню до часу виконання
+
 import React, {FC, useState} from "react";
 import {ImageBackground, Text, TouchableOpacity, View} from "react-native";
 import {NavigationType} from "../App";

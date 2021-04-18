@@ -16,8 +16,9 @@ export const neuron: (sigma: number, time: number, iterations: number) => string
         let delta = 0
         let index = iteration % ABCD.length
         delta = P - (W1 * ABCD[index][0] + W2 * ABCD[index][1])
-        W1 = W1 + delta * ABCD[index][0] * sigma
-        W2 = W2 + delta * ABCD[index][1] * sigma
+        W1 = Math.ceil((W1 + delta * ABCD[index][0] * sigma) * 1000000) / 1000000
+        W2 = Math.ceil((W2 + delta * ABCD[index][1] * sigma) * 1000000) / 1000000
+        console.log(W1)
         res[index] = delta <= 0 ? 'more' : 'less'
         iteration++
     }

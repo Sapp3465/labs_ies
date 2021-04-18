@@ -1,3 +1,5 @@
+//3.3 виведіть кількість проведених мутацій
+
 import React, {FC, useState} from "react";
 import {
     Text,
@@ -65,6 +67,7 @@ export const Lab33: FC<{ setNavigation: React.Dispatch<React.SetStateAction<Navi
     const [c, changeC] = useState('')
     const [d, changeD] = useState('')
     const [y, changeY] = useState('')
+    const [mutations, setMutations] = useState(0)
     const [result, changeResult] = useState('')
     return <ImageBackground style={stl.mainContainer}
                             source={{uri: 'https://uchitel.pro/wp-content/uploads/2018/07/content_geny2_1__econet_ru-790x480.jpg'}}>
@@ -85,9 +88,10 @@ export const Lab33: FC<{ setNavigation: React.Dispatch<React.SetStateAction<Navi
                 <TextInput style={stl.input} keyboardType={'numeric'} placeholder={'y'} value={y}
                            onChangeText={changeY}/>
                 </View>
-                <TouchableOpacity style={stl.ok} onPress={() => changeResult(gen(Number(a),Number(b),Number(c),Number(d),Number(y)))}>
+                <TouchableOpacity style={stl.ok} onPress={() => changeResult(gen(Number(a),Number(b),Number(c),Number(d),Number(y), setMutations))}>
                     <Text>Ok</Text>
                 </TouchableOpacity>
+                <Text>Mutations count : {mutations}</Text>
                 <Text>{result}</Text>
             </View>
         </View>

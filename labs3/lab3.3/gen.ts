@@ -1,10 +1,11 @@
-export const gen: (a: number, b: number, c: number, d: number, y: number) => string = (a, b, c, d, y) => {
+export const gen: (a: number, b: number, c: number, d: number, y: number, setMutations: React.Dispatch<React.SetStateAction<number>>) => string = (a, b, c, d, y, setMutations) => {
     const population: number = 40
     const max_gen_value = 5
     const time: number = 4000
     let gens: Array<Array<number>> = []
     let deltas: Array<number> = []
     let interests: Array<number> = []
+    let mutationsCount: number = 0;
 
     const start: number = new Date().getTime()
 
@@ -57,12 +58,16 @@ export const gen: (a: number, b: number, c: number, d: number, y: number) => str
             children_gens[index][2] = gens[mother_index][2]
             children_gens[index][3] = gens[mother_index][3]
         }
+        mutationsCount++
         gens = children_gens
 
         for (let index: number = 0; index < population; index++) {
             let result: number = a * gens[index][0] + b * gens[index][1] + c * gens[index][2] + d * gens[index][3];
             deltas[index] = Math.abs(result - y)
-            if (!deltas[index]) return 'x1 = ' + gens[index][0] + ' x2 = ' + gens[index][1] + ' x3 = ' + gens[index][2] + ' x4 = ' + gens[index][3] + ' delta = ' + deltas[index]
+            if (!deltas[index]) {
+                setMutations(mutationsCount)
+                return 'x1 = ' + gens[index][0] + ' x2 = ' + gens[index][1] + ' x3 = ' + gens[index][2] + ' x4 = ' + gens[index][3] + ' delta = ' + deltas[index]
+            }
         }
         end = new Date().getTime()
     }
@@ -75,5 +80,6 @@ export const gen: (a: number, b: number, c: number, d: number, y: number) => str
             deltaIndex = index
         }
     }
+    setMutations(mutationsCount)
     return 'x1 = ' + gens[deltaIndex][0] + ' x2 = ' + gens[deltaIndex][1] + ' x3 = ' + gens[deltaIndex][2] + ' x4 = ' + gens[deltaIndex][3] + ' delta = ' + deltas[deltaIndex]
 }
